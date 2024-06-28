@@ -101,7 +101,7 @@ struct grid {
 
   ~grid() {
     free(cells);
-    parallel_for(0, numCells, [&](intT i) {
+    parallel_for(0, cellCapacity, [&](intT i) {
 	if(nbrCache[i]) delete nbrCache[i];
       });
     free(nbrCache);

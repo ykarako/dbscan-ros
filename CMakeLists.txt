@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(dbscan)
+project(dbscan_ros)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 add_compile_options(-std=c++17 -pthread -g -O3)
@@ -10,8 +10,9 @@ add_compile_options(-std=c++17 -pthread -g -O3)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
-  geometry_msgs
+  sensor_msgs
   message_generation
+  dbscan_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -53,10 +54,9 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate services in the 'srv' folder
-add_service_files(
-  FILES
-  DBScan.srv
-)
+# add_service_files(
+#   FILES
+# )
 
 ## Generate actions in the 'action' folder
 # add_action_files(
@@ -69,7 +69,8 @@ add_service_files(
 generate_messages(
   DEPENDENCIES
   std_msgs
-  geometry_msgs
+  sensor_msgs
+  dbscan_msgs
 )
 
 ################################################
@@ -104,7 +105,7 @@ generate_messages(
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES dxl_controller
-  CATKIN_DEPENDS roscpp std_msgs geometry_msgs message_runtime
+  CATKIN_DEPENDS roscpp std_msgs sensor_msgs message_runtime dbscan_msgs
 )
 
 ###########
@@ -120,7 +121,6 @@ include_directories(
 
 add_executable(dbscan src/dbscan.cpp)
 add_dependencies(dbscan ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-# add_dependencies(dbscan ${yokojiro_arm_msgs_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(dbscan ${PROJECT_NAME}_generate_messages_cpp)
 target_link_libraries(dbscan ${catkin_LIBRARIES})
 

@@ -11,9 +11,9 @@ WORKDIR /root/catkin_ws
 
 COPY ./src ./src/dbscan-ros/src
 COPY ./include ./src/dbscan-ros/include
-COPY ./srv ./src/dbscan-ros/srv
 COPY ./package.xml ./src/dbscan-ros/package.xml
 COPY ./CMakeLists.txt ./src/dbscan-ros/CMakeLists.txt
+COPY ./dbscan_msgs ./src/dbscan_msgs
 
 RUN /setup/setup.bash
 
