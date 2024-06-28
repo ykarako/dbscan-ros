@@ -1,0 +1,5 @@
+sensor_msgs/PointCloud2 points
+float64 eps
+float64 min_samples
+---
+int32[] labels

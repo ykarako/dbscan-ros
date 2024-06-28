@@ -113,10 +113,6 @@ int DBSCAN(intT n, floatT* PF, double epsilon, intT minPts, bool* coreFlagOut, i
       }
     });
 
-  parallel_for(0, G->numCell(), [&](intT i) {
-      if (trees[i]) delete trees[i];
-    });
-
   parallel_for(0, n, [&](intT i) {cluster[i] = -1;});
 
   parallel_for(0, G->numCell(), [&](intT i) {
@@ -154,6 +150,9 @@ int DBSCAN(intT n, floatT* PF, double epsilon, intT minPts, bool* coreFlagOut, i
 #endif
   uf.del();
   free(ccFlag);
+  parallel_for(0, G->numCell(), [&](intT i) {
+      if (trees[i]) delete trees[i];
+    });
   free(trees);
   delete G;
 
