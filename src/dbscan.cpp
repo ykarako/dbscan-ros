@@ -15,7 +15,7 @@ constexpr int DIM = 3;
 
 bool calc_dbscan(dbscan_msgs::DBScan::Request &req, dbscan_msgs::DBScan::Response &res) {
 
-    ROS_INFO("dbscan is called.");
+    ROS_DEBUG("dbscan is called.");
 
     sensor_msgs::PointCloud cloud;
     sensor_msgs::convertPointCloud2ToPointCloud(req.points, cloud);
